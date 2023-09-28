@@ -1,6 +1,7 @@
 # Ex. No: 5 Creating Triggers using PL/SQL
 
-### AIM: To create a Trigger using PL/SQL.
+### AIM: 
+To create a Trigger using PL/SQL.
 
 ### Steps:
 1. Create employee table with following attributes (empid NUMBER, empname VARCHAR(10), dept VARCHAR(10),salary NUMBER);
@@ -14,11 +15,35 @@
 
 ### Program:
 ### Create employee table
-
+```
+create table employeee (empid NUMBER, empname VARCHAR(10), dept VARCHAR(10),salary NUMBER);
+```
 ### Create salary_log table
-
+```
+Create salary_log table (log_id NUMBER , empid NUMBER,empname VARCHAR(10),old_salary NUMBER,new_salary NUMBER,update_date DATE);
+```
 ### PLSQL Trigger code
+```
+ create or replace trigger log_salary_update
+  2  before update on employeee
+  3  for each row
+  4  declare
+  5  v_old_salary NUMBER;
+  6  v_new_salary NUMBER;
+  7  begin
+  8  v_old_salary:= :old.salary;
+  9  v_new_salary:= :new.salary;
+ 10  if v_old_salary <> v_new_salary then
+ 11  insert into salary_log (empid, empname, old_salary, new_salary, update_date)
+ 12  values(:old.empid, :old.empname, v_old_salary, v_new_salary, sysdate);
+ 13  end if;
+ 14  end;
+ 15  /
+```
 
 ### Output:
+![image](https://github.com/SandhiyaR1/Ex-No-5-Creating-Triggers-using-PL-SQL/assets/113497571/dec1c04f-6411-4de4-b950-e73676296a79)
+
 
 ### Result:
+Thus the trigger has been created sucessfully.

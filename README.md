@@ -20,10 +20,13 @@ To create a Trigger using PL/SQL.
 8.Display the employee table, salary_log table.
 
 # Program:
+
+# Create employee table
 ```
-Create employee table
 create table employeee (empid NUMBER, empname VARCHAR(10), dept VARCHAR(10),salary NUMBER);
-Create salary_log table
+```
+# Create salary_log table
+```
 Create salary_log table (log_id NUMBER , empid NUMBER,empname VARCHAR(10),old_salary NUMBER,new_salary NUMBER,update_date DATE);
 ````
 # PLSQL Trigger code
